@@ -35,7 +35,7 @@ class continuityAnalysis():
     def __init__(self):
         pass
 
-   def openFile(self, filename):
+    def openFile(self, filename):
         try:
             logger.debug("trying to open: %s ", filename)
             file = open(filename, 'r')
@@ -80,8 +80,10 @@ class continuityAnalysis():
         self.maxSeriationSize = self.countOfAssemblages
         return True
 
+    def createNetwork(self):
+        pass
 
-    # from a "summed" graph, create a "min max" solution -- using Counts
+    ## from a "summed" graph, create a "min max" solution -- using Counts
     def createMinMaxGraphByCount(self, **kwargs):
         ## first need to find the pairs with the maximum occurrence, then we work down from there until all of the
         ## nodes are included
@@ -130,3 +132,66 @@ class continuityAnalysis():
                 output_graph.add_path([ass1, ass2], weight=value, inverseweight=(1/value ))
 
         return output_graph
+
+        ## Output to file and to the screen
+    def graphOutput(self, sumGraph, sumgraphfilename):
+
+        ## Now make the graphic for set of graphs
+        plt.rcParams['text.usetex'] = False
+        newfilename = self.outputDirectory + sumgraphfilename
+        gmlfilename = self.outputDirectory + sumgraphfilename + ".gml"
+        self.saveGraph(sumGraph, gmlfilename)
+        if self.args['shapefile'] is not None and self.args['xyfile'] is not None:
+            self.createShapefile(sumGraph, newfilename[0:-4] + ".shp")
+        plt.figure(newfilename, figsize=(8, 8))
+        os.environ["PATH"] += ":/usr/local/bin:"
+        pos = nx.graphviz_layout(sumGraph)
+        edgewidth = []
+
+        ### Note the weights here are biased where the *small* differences are the largest (since its max value - diff)
+        weights = nx.get_edge_attributes(sumGraph, 'weight')
+        for w in weights:
+            edgewidth.append(weights[w])
+        maxValue = max(edgewidth)
+        widths = []
+        for w in edgewidth:
+            widths.append(((maxValue - w) + 1) * 5)
+
+        assemblageSizes = []
+        sizes = nx.get_node_attributes(sumGraph, 'size')
+        #print sizes
+        for s in sizes:
+            #print sizes[s]
+            assemblageSizes.append(sizes[s])
+        nx.draw_networkx_edges(sumGraph, pos, alpha=0.3, width=widths)
+        sizes = nx.get_node_attributes(sumGraph, 'size')
+        nx.draw_networkx_nodes(sumGraph, pos, node_size=assemblageSizes, node_color='w', alpha=0.4)
+        nx.draw_networkx_edges(sumGraph, pos, alpha=0.4, node_size=0, width=1, edge_color='k')
+        nx.draw_networkx_labels(sumGraph, pos, fontsize=10)
+        font = {'fontname': 'Helvetica',
+                'color': 'k',
+                'fontweight': 'bold',
+                'fontsize': 10}
+        plt.axis('off')
+        plt.savefig(newfilename, dpi=75)
+        self.saveGraph(sumGraph, newfilename + ".gml")
+
+    def checkMinimumRequirements(self):
+        try:
+            from networkx import graphviz_layout
+        except ImportError:
+            raise ImportError(
+                "This function needs Graphviz and either PyGraphviz or Pydot. Please install GraphViz from http://www.graphviz.org/")
+        if self.args['inputfile'] in self.FalseList:
+            sys.exit("Inputfile is a required input value: --inputfile=../testdata/testdata.txt")
+
+    def addOptions(self, oldargs):
+        args = {'debug': None, 'bootstrapCI': None, 'bootstrapSignificance': None,
+                'filtered': None, 'largestonly': None, 'individualfileoutput': None, 'xyfile':None,
+                'excel': None, 'threshold': None, 'noscreen': None, 'xyfile': None, 'pairwisefile': None, 'mst': None,
+                'stats': None, 'screen': None, 'allsolutions': None, 'inputfile': None, 'outputdirectory': None,
+                'shapefile': None, 'frequency': None, 'continuity': None, 'graphs': None, 'graphroot': None,
+                'continuityroot': None, 'verbose':None, 'occurrenceseriation':None,
+                'occurrence':None,'frequencyseriation':None, 'pdf':None, 'atlas':None}
+        for a in oldargs:
+            self.args[a] = oldargs[a]
