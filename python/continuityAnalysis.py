@@ -26,7 +26,6 @@ import networkx.algorithms.isomorphism as iso
 from pylab import *
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
-import xlsxwriter
 from networkx.algorithms.isomorphism.isomorph import graph_could_be_isomorphic as isomorphic
 
 
@@ -34,6 +33,15 @@ class continuityAnalysis():
 
     def __init__(self):
         pass
+        self.columnNames = []
+        self.labels=[]
+        self.taxa={}
+        self.countOfTaxa=0
+        self.graph=nx.Graph(name="MaximumGraph", GraphID=1, is_directed=False)
+        self.minMaxGraph=nx.Graph(name="MaximumParsimony", GraphID=2, is_directed=False)
+        self.outputDirectory =""
+        self.FalseList=[None,0,False,"None","0","False"]
+
 
     def openFile(self, filename):
         try:
@@ -43,67 +51,56 @@ class continuityAnalysis():
             logger.error("Cannot open %s. Error: %s", filename, e)
             sys.exit('file %s does not open: %s') % ( filename, e)
 
-        reader = csv.reader(file, delimiter='\t', quotechar='|')
-        values = []
-        rowcount=0
+        reader = csv.reader(file, delimiter=' ', quotechar='|')
         for row in reader:
             row = map(str, row)
-            if rowcount==0 and self.args['noheader'] <> 1:
-                rowcount=1
-                row.pop(0)
-                self.typeNames=row
-            else:
-                if len(row) > 1:
-                    label = row[0]
-                    self.labels.append(label)
-                    row.pop(0)
-                    row = map(float, row)
-                    self.numberOfClasses = len(row)
-                    freq = []
-                    rowtotal = sum(row)
-                    for r in row:
-                        if self.args['occurrence'] not in self.FalseList:
-                            if float(r)>0:
-                                values.append(1)
-                                freq.append(1)
-                            else:
-                                values.append(0)
-                                freq.append(0)
-                        else:
-                            freq.append(float(float(r) / float(rowtotal)))
-                            values.append(float(r))
-                    self.assemblages[label] = freq
-                    self.assemblageFrequencies[label] = freq
-                    self.assemblageValues[label] = values
-                    self.assemblageSize[label] = rowtotal
-                    self.countOfAssemblages += 1
-        self.maxSeriationSize = self.countOfAssemblages
+            label = row[0]
+            self.labels.append(label)
+            row.pop(0)
+            self.taxa[label]=row
+            #print "characters: ", row
+            self.countOfTaxa += 1
         return True
 
+    def saveGraph(self, graph, filename):
+        nx.write_gml(graph, filename)
+
+    def all_pairs(self, lst):
+        return list((itertools.permutations(lst, 2)))
+
+    def compareTaxa(self, taxa1, taxa2):
+        number = [x == y for (x, y) in zip(taxa1, taxa2)].count(True)
+        return number
+
     def createNetwork(self):
-        pass
+        allPairs = self.all_pairs(self.labels)
+        for pairs in allPairs:
+            self.compareTaxa(pairs[0],pairs[1])
+            if pairs[0] not in self.graph.nodes():
+                self.graph.add_node(pairs[0], name=pairs[0], characterTraits=self.taxa[pairs[0]], connectedTo=pairs[1])
+            if pairs[1] not in self.graph.nodes():
+                self.graph.add_node(pairs[1], name=pairs[1], characterTraits=self.taxa[pairs[1]], connectedTo=pairs[0])
+            self.graph.add_edge(pairs[0], pairs[1], weight=self.compareTaxa(pairs[0],pairs[1]))
+
+    def saveGraph(self, graph, filename):
+        nx.write_gml(graph, filename[:-4]+".gml")
 
     ## from a "summed" graph, create a "min max" solution -- using Counts
-    def createMinMaxGraphByCount(self, **kwargs):
+    def createMinMaxGraph(self):
         ## first need to find the pairs with the maximum occurrence, then we work down from there until all of the
         ## nodes are included
         ## the weight
-        weight = kwargs.get('weight', "weight")
-        input_graph = kwargs.get('input_graph')
+
         maxWeight = 0
         pairsHash = {}
-        output_graph = nx.Graph(is_directed=False)
 
-        for e in input_graph.edges_iter():
-            d = input_graph.get_edge_data(*e)
-            fromAssemblage = e[0]
-            toAssemblage = e[1]
-            if weight == "weight":
-                currentWeight = int(d['weight'])
-            else:
-                currentWeight = int(d['weight'])
-            pairsHash[fromAssemblage + "*" + toAssemblage] = currentWeight
-            label = fromAssemblage + "*" + toAssemblage
+        for e in self.graph.edges_iter():
+            d = self.graph.get_edge_data(*e)
+            fromTaxa = e[0]
+            toTaxa = e[1]
+            currentWeight = int(d['weight'])
+            pairsHash[fromTaxa + "*" + toTaxa] = currentWeight
+            label = fromTaxa + "*" + toTaxa
 
         matchOnThisLevel = False
         currentValue = 0
@@ -117,39 +114,32 @@ class continuityAnalysis():
                 matchOnThisLevel = False  ## we need to match all the connections with equivalent weights (otherwise we
                 ## would stop after the nodes are included the first time which would be arbitrary)
                 ## here we set the flag to false.
-            ass1, ass2 = key.split("*")
+            taxa1, taxa2 = key.split("*")
             #print ass1, "-", ass2, "---",value
-            if ass1 not in output_graph.nodes():
-                output_graph.add_node(ass1, name=ass1, xCoordinate=self.xAssemblage[ass1],
-                                      yCoordinate=self.yAssemblage[ass1], size=self.assemblageSize[ass1])
-            if ass2 not in output_graph.nodes():
-                output_graph.add_node(ass2, name=ass2, xCoordinate=self.xAssemblage[ass2],
-                                      yCoordinate=self.yAssemblage[ass2], size=self.assemblageSize[ass2])
-            if nx.has_path(output_graph, ass1, ass2) == False or matchOnThisLevel == True:
+            if taxa1 not in self.minMaxGraph.nodes():
+                self.minMaxGraph.add_node(taxa1, name=taxa1,characterTraits=self.taxa[taxa1])
+            if taxa2 not in self.minMaxGraph.nodes():
+                self.minMaxGraph.add_node(taxa2, name=taxa2, characterTraits=self.taxa[taxa2])
+            if nx.has_path(self.minMaxGraph, taxa1, taxa2) == False or matchOnThisLevel == True:
                 matchOnThisLevel = True   ## setting this true allows us to match the condition that at least one match was
                 ## made at this level
-
-                output_graph.add_path([ass1, ass2], weight=value, inverseweight=(1/value ))
-
-        return output_graph
+                self.minMaxGraph.add_path([taxa1, taxa2], weight=value, inverseweight=(1/value ))
 
         ## Output to file and to the screen
-    def graphOutput(self, sumGraph, sumgraphfilename):
-
+    def graphOutput(self):
+        graph=self.minMaxGraph
         ## Now make the graphic for set of graphs
         plt.rcParams['text.usetex'] = False
-        newfilename = self.outputDirectory + sumgraphfilename
-        gmlfilename = self.outputDirectory + sumgraphfilename + ".gml"
-        self.saveGraph(sumGraph, gmlfilename)
-        if self.args['shapefile'] is not None and self.args['xyfile'] is not None:
-            self.createShapefile(sumGraph, newfilename[0:-4] + ".shp")
+        newfilename = self.args['inputfile'][:-4]+"-out.vna"
+        gmlfilename = self.args['inputfile'][:-4]+"-out.gml"
+        self.saveGraph(graph, gmlfilename)
         plt.figure(newfilename, figsize=(8, 8))
-        os.environ["PATH"] += ":/usr/local/bin:"
-        pos = nx.graphviz_layout(sumGraph)
+        os.environ["PATH"] += ":/usr/local/bin:/usr/local/opt/graphViz/:"
+        pos = nx.graphviz_layout(graph)
         edgewidth = []
 
         ### Note the weights here are biased where the *small* differences are the largest (since its max value - diff)
-        weights = nx.get_edge_attributes(sumGraph, 'weight')
+        weights = nx.get_edge_attributes(graph, 'weight')
         for w in weights:
             edgewidth.append(weights[w])
         maxValue = max(edgewidth)
@@ -158,23 +148,23 @@ class continuityAnalysis():
             widths.append(((maxValue - w) + 1) * 5)
 
         assemblageSizes = []
-        sizes = nx.get_node_attributes(sumGraph, 'size')
+        sizes = nx.get_node_attributes(graph, 'size')
         #print sizes
         for s in sizes:
             #print sizes[s]
             assemblageSizes.append(sizes[s])
-        nx.draw_networkx_edges(sumGraph, pos, alpha=0.3, width=widths)
-        sizes = nx.get_node_attributes(sumGraph, 'size')
-        nx.draw_networkx_nodes(sumGraph, pos, node_size=assemblageSizes, node_color='w', alpha=0.4)
-        nx.draw_networkx_edges(sumGraph, pos, alpha=0.4, node_size=0, width=1, edge_color='k')
-        nx.draw_networkx_labels(sumGraph, pos, fontsize=10)
+        nx.draw_networkx_edges(graph, pos, alpha=0.3, width=widths)
+        sizes = nx.get_node_attributes(graph, 'size')
+        nx.draw_networkx_nodes(graph, pos, node_color='w', alpha=0.4)
+        nx.draw_networkx_edges(graph, pos, alpha=0.4, node_size=0, width=1, edge_color='k')
+        nx.draw_networkx_labels(graph, pos, fontsize=10)
         font = {'fontname': 'Helvetica',
                 'color': 'k',
                 'fontweight': 'bold',
                 'fontsize': 10}
         plt.axis('off')
-        plt.savefig(newfilename, dpi=75)
-        self.saveGraph(sumGraph, newfilename + ".gml")
+        #plt.savefig(gmlfilename, dpi=75)
+        plt.show()
 
     def checkMinimumRequirements(self):
         try:
@@ -186,12 +176,63 @@ class continuityAnalysis():
             sys.exit("Inputfile is a required input value: --inputfile=../testdata/testdata.txt")
 
     def addOptions(self, oldargs):
-        args = {'debug': None, 'bootstrapCI': None, 'bootstrapSignificance': None,
-                'filtered': None, 'largestonly': None, 'individualfileoutput': None, 'xyfile':None,
-                'excel': None, 'threshold': None, 'noscreen': None, 'xyfile': None, 'pairwisefile': None, 'mst': None,
-                'stats': None, 'screen': None, 'allsolutions': None, 'inputfile': None, 'outputdirectory': None,
-                'shapefile': None, 'frequency': None, 'continuity': None, 'graphs': None, 'graphroot': None,
-                'continuityroot': None, 'verbose':None, 'occurrenceseriation':None,
-                'occurrence':None,'frequencyseriation':None, 'pdf':None, 'atlas':None}
+        self.args = {'debug': None,  'inputfile': None, 'outputdirectory': None, 'pdf':None,'separator':None, 'missing':None, 'similarity':None,
+                     'header':None}
+
         for a in oldargs:
+            #print a
             self.args[a] = oldargs[a]
+
+    def process(self,args):
+        self.addOptions(args)
+        self.checkMinimumRequirements()
+        self.openFile(self.args['inputfile'])
+        self.createNetwork()
+        self.createMinMaxGraph()
+        self.graphOutput()
+        #self.saveGraph(self.minMaxGraph,self.args['inputfile'])
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Conduct a continuity analysis')
+    parser.add_argument('--debug', '-d', default=None, help='Sets the DEBUG flag for massive amounts of annotated output.')
+    parser.add_argument('--inputfile','-f', default=1,
+                        help="The file to be analyzed (.txt file) ")
+    parser.add_argument('--separator','-s', default="tab",
+                    help="The type of separator between characters (space, tab, none) ")
+    parser.add_argument('--missing','-m',default=None, help='What to do with missing values (?) (e.g., estimate, none)')
+    parser.add_argument('--similarity','-si',default="similarity", help="Use similarity or dissimlarity")
+    parser.add_argument('--header','-hd', default=None, help='Whether or not there is a header (None, Yes)')
+
+    args={}
+    try:
+        args = vars(parser.parse_args())
+    except IOError, msg:
+        parser.error(str(msg))
+        sys.exit()
+
+    ca = continuityAnalysis()
+
+    results = ca.process(args)
+
+''''
+From the command line:
+
+python ./continuityAnalysis.py --inputfile=../testdata/pfg.txt "
+
+
+As a module:
+
+from continuityAnalysis import continuityAnalysis
+
+ca = continuityAnalysis()
+
+args={}
+args{'inputfile'}="../testdata/testdata-5.txt"
+args{'screen'}=1
+args{'debug'}=1
+args('graphs'}=1
+
+results = ca.process(args)
+
+'''''
