@@ -57,8 +57,8 @@ class continuityAnalysis():
             label = row[0]
             self.labels.append(label)
             row.pop(0)
-            self.taxa[label]=row
-            #print "characters: ", row
+            self.taxa[label]=str(row[0])
+            #print "characters: ", str(row[0])
             self.countOfTaxa += 1
         return True
 
@@ -69,10 +69,18 @@ class continuityAnalysis():
         return list((itertools.permutations(lst, 2)))
 
     def compareTaxa(self, taxa1, taxa2):
-        number = [x == y for (x, y) in zip(taxa1, taxa2)].count(True)
+        number = 0
+        count = 0
+        #print self.taxa[taxa1], "-", self.taxa[taxa2]
+        for t in self.taxa[taxa1]:
+            #print t, "-", self.taxa[taxa2][count]
+            if t == self.taxa[taxa2][count]:
+                number += 1
+            count += 1
+        #print "1:  :", self.taxa[taxa1], "2: ", self.taxa[taxa2], "-->", number
         return number
 
-    def createNetwork(self):
+    def createGraph(self):
         allPairs = self.all_pairs(self.labels)
         for pairs in allPairs:
             self.compareTaxa(pairs[0],pairs[1])
@@ -187,7 +195,7 @@ class continuityAnalysis():
         self.addOptions(args)
         self.checkMinimumRequirements()
         self.openFile(self.args['inputfile'])
-        self.createNetwork()
+        self.createGraph()
         self.createMinMaxGraph()
         self.graphOutput()
         #self.saveGraph(self.minMaxGraph,self.args['inputfile'])
