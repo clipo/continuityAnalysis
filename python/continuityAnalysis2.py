@@ -129,15 +129,20 @@ class continuityAnalysis():
 
         maxWeight = 0
         pairsHash = {}
-
+        traitList={}
+        dimList={}
         for e in self.graph.edges_iter():
             d = self.graph.get_edge_data(*e)
             fromTaxa = e[0]
             toTaxa = e[1]
             #print "weight: ", d['weight'][0]
             currentWeight = int(d['weight'][0])
+            dimensions=d['weight'][1]
+            traits=d['weight'][2]
             pairsHash[fromTaxa + "*" + toTaxa] = currentWeight
             label = fromTaxa + "*" + toTaxa
+            traitList[label]=traits
+            dimList[label]=dimensions
 
         matchOnThisLevel = False
         currentValue = 0
@@ -160,7 +165,8 @@ class continuityAnalysis():
             if nx.has_path(self.minMaxGraph, taxa1, taxa2) == False or matchOnThisLevel == True:
                 matchOnThisLevel = True   ## setting this true allows us to match the condition that at least one match was
                 ## made at this level
-                self.minMaxGraph.add_path([taxa1, taxa2], weight=value, inverseweight=(1/value ))
+                self.minMaxGraph.add_path([taxa1, taxa2], weight=value, dimensions=str(dimList[key]).strip('[]'),traits=str(traitList[key]).strip('[]'),
+                                          change=str(dimList[key].strip('[]'))+":"+str(traitList[key]).strip('[]'),   inverseweight=(1/value ))
 
         ## Output to file and to the screen
     def graphOutput(self):
