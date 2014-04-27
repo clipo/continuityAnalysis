@@ -88,11 +88,12 @@ class continuityAnalysis():
         return list((itertools.permutations(lst, 2)))
 
     def compareTaxa(self, taxa1, taxa2):
+        #print self.taxa[taxa1], "-", self.taxa[taxa2]
         number = 0
         count = 0
         dimensionsChanged =[]
         traitsChanged=[]
-        #print self.taxa[taxa1], "-", self.taxa[taxa2]
+
         for t in self.taxa[taxa1]:
             #print t, "-", self.taxa[taxa2][count]
             if t == self.taxa[taxa2][count]:
@@ -100,7 +101,7 @@ class continuityAnalysis():
             else:
                 #print "dimensions: ",self.dimensions[count+1]
                 dimensionsChanged.append(self.dimensions[count+1])
-                change = self.classification[count+1][int(self.taxa[taxa2][count])]+"->"+self.classification[count+1][int(t)]
+                change = self.dimensions[count+1]+":"+self.classification[count+1][int(self.taxa[taxa2][count])]+"->"+self.classification[count+1][int(t)]
                 traitsChanged.append(change)
             count += 1
         #print "1:  :", self.taxa[taxa1], "2: ", self.taxa[taxa2], "-->", number
@@ -112,11 +113,19 @@ class continuityAnalysis():
         allPairs = self.all_pairs(self.labels)
         for pairs in allPairs:
             num,dim,traits=self.compareTaxa(pairs[0],pairs[1])
+            stuffChanged=str(dim)+"=>"+str(traits)
+            #print "stuff:", stuffChanged
             if pairs[0] not in self.graph.nodes():
                 self.graph.add_node(pairs[0], name=pairs[0], characterTraits=self.taxa[pairs[0]], connectedTo=pairs[1])
             if pairs[1] not in self.graph.nodes():
                 self.graph.add_node(pairs[1], name=pairs[1], characterTraits=self.taxa[pairs[1]], connectedTo=pairs[0])
-            self.graph.add_edge(pairs[0], pairs[1],  weight=self.compareTaxa(pairs[0],pairs[1]),dimsChanged=dim, traitsChanged=traits)
+
+            self.graph.add_edge(pairs[0], pairs[1],
+                                weight=self.compareTaxa(pairs[0],pairs[1]),
+                                dims=dim,
+                                traits=traits,
+                                stuffChanged=stuffChanged)
+            #print stuffChanged.strip('[]')
 
     def saveGraph(self, graph, filename):
         nx.write_gml(graph, filename[:-4]+".gml")
@@ -131,18 +140,22 @@ class continuityAnalysis():
         pairsHash = {}
         traitList={}
         dimList={}
+        stuffChanged={}
         for e in self.graph.edges_iter():
             d = self.graph.get_edge_data(*e)
             fromTaxa = e[0]
             toTaxa = e[1]
+            print d['weight']
             #print "weight: ", d['weight'][0]
             currentWeight = int(d['weight'][0])
             dimensions=d['weight'][1]
             traits=d['weight'][2]
+            #stuff=d['weight'][3]
             pairsHash[fromTaxa + "*" + toTaxa] = currentWeight
             label = fromTaxa + "*" + toTaxa
             traitList[label]=traits
             dimList[label]=dimensions
+            #stuffChanged[label]=stuff
 
         matchOnThisLevel = False
         currentValue = 0
@@ -165,8 +178,10 @@ class continuityAnalysis():
             if nx.has_path(self.minMaxGraph, taxa1, taxa2) == False or matchOnThisLevel == True:
                 matchOnThisLevel = True   ## setting this true allows us to match the condition that at least one match was
                 ## made at this level
-                self.minMaxGraph.add_path([taxa1, taxa2], weight=value, dimensions=str(dimList[key]).strip('[]'),traits=str(traitList[key]).strip('[]'),
-                                          change=str(dimList[key].strip('[]'))+":"+str(traitList[key]).strip('[]'),   inverseweight=(1/value ))
+                self.minMaxGraph.add_path([taxa1, taxa2], weight=value, dimensions=str(dimList[key]).strip('[]'),
+                                          traits=str(traitList[key]).strip('[]'),
+                                          #traitChanged=str(stuffChanged[key].strip('[]')),
+                                          inverseweight=(1/value ))
 
         ## Output to file and to the screen
     def graphOutput(self):
