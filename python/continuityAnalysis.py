@@ -42,6 +42,23 @@ class continuityAnalysis():
         self.outputDirectory =""
         self.FalseList=[None,0,False,"None","0","False"]
 
+        self.dimensions={1:"Location of Maximum Blade Width",
+            2: "Base Shape",
+            3: "Basal-Indentation",
+            4: "Constriction Ratio",
+            5: "Outer Tang Angle",
+            6: "Tang-Tip Shape",
+            7: "Fluting",
+            8: "Length/Width Ratio"}
+
+        self.classification={1:{1:"Proximal Quarter",2:"Secondmost Proximal Quarter",3:"Thirdmost Proximal Quarter",4:"Distal Quarter"},
+		   2:{1:"Arc/Round",2:"Normal Curve",3:"Triangular", 4:"Folsomoid",5:"Flat",6:"Convex"},
+		   3:{1:"No indentation",2:"Shallow",3:"Deep",4:"Very Deep"},
+		   4:{1:"1.0",2:"0.90-0.99",3:"0.80-0.89",4:"0.70-0.79",5:"0.60-0.69",6:"0.50-0.59"},
+		   5:{1:"93-115",2:"88-92",3:"81-87",4:"66-80",5:"51-65",6:"<=50"},
+		   6:{1:"Pointed",2:"Round",3:"Blunt"},
+		   7:{1:"Absent",2:"Present"},
+		   8:{1:"1.00-1.99",2:"2.00-2.99",3:"3.00-3.99",4:"4.00-4.99",5:"5.00-5.99",6:">=6.00"}}
 
     def openFile(self, filename):
         try:
@@ -71,13 +88,19 @@ class continuityAnalysis():
     def compareTaxa(self, taxa1, taxa2):
         number = 0
         count = 0
+        dimensionsChanged =[]
+        traitsChanged={[]}
         #print self.taxa[taxa1], "-", self.taxa[taxa2]
         for t in self.taxa[taxa1]:
             #print t, "-", self.taxa[taxa2][count]
             if t == self.taxa[taxa2][count]:
                 number += 1
+                dimensionsChanged.append(self.dimension[t+1])
+                traitsChanged[self.dimension[t+1] ].append(self.classification[t+1][self.taxa[taxa2][count]])
             count += 1
         #print "1:  :", self.taxa[taxa1], "2: ", self.taxa[taxa2], "-->", number
+        print "dimensionsChanged: ", dimensionsChanged
+        print "traitsChanged: ", traitsChanged
         return number
 
     def createGraph(self):
