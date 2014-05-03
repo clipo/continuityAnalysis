@@ -41,6 +41,7 @@ class continuityAnalysis():
         self.minMaxGraph=nx.Graph(name="MaximumParsimony", GraphID=2, is_directed=False)
         self.outputDirectory =""
         self.FalseList=[None,0,False,"None","0","False"]
+        self.numberOfDimensions=0
 
         self.dimensions={1:"Location of Maximum Blade Width",
             2: "Base Shape",
@@ -78,6 +79,7 @@ class continuityAnalysis():
             row.pop(0)
             self.taxa[label]=str(row[0])
             #print "characters: ", str(row[0])
+            self.numberOfDimensions=len(str(row[0]))
             self.countOfTaxa += 1
         return True
 
@@ -181,7 +183,7 @@ class continuityAnalysis():
                 self.minMaxGraph.add_path([taxa1, taxa2], weight=value, dimensions=str(dimList[key]).strip('[]'),
                                           traits=str(traitList[key]).strip('[]'),
                                           #traitChanged=str(stuffChanged[key].strip('[]')),
-                                          inverseweight=(1/value ))
+                                          inverseweight=(1/value ), differences=self.numberOfDimensions-value)
 
         ## Output to file and to the screen
     def graphOutput(self):
