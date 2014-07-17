@@ -4,488 +4,761 @@ graph [
   name "MaximumParsimony"
   node [
     id 0
-    label "BDQ 21235212"
-    characterTraits []
-    name "BDQ 21235212"
+    label "KCrow"
+    characterTraits "31231122"
+    name "KCrow"
   ]
   node [
     id 1
-    label "KCNep 21224322"
-    characterTraits []
-    name "KCNep 21224322"
+    label "KNort"
+    characterTraits "21251322"
+    name "KNort"
   ]
   node [
     id 2
-    label "KCe 21234324"
-    characterTraits []
-    name "KCe 21234324"
+    label "KCa"
+    characterTraits "21233223"
+    name "KCa"
   ]
   node [
     id 3
-    label "KDeb 22231323"
-    characterTraits []
-    name "KDeb 22231323"
+    label "BullKGain"
+    characterTraits "21221322"
+    name "BullKGain"
   ]
   node [
     id 4
-    label "DDeb 22222222"
-    characterTraits []
-    name "DDeb 22222222"
+    label "DebR"
+    characterTraits "22322222"
+    name "DebR"
   ]
   node [
     id 5
-    label "BullKGain 21221322"
-    characterTraits []
-    name "BullKGain 21221322"
+    label "BCDQSuwa"
+    characterTraits "21234312"
+    name "BCDQSuwa"
   ]
   node [
     id 6
-    label "DebGainb 22322122"
-    characterTraits []
-    name "DebGainb 22322122"
+    label "BullKGainR"
+    characterTraits "21222222"
+    name "BullKGainR"
   ]
   node [
     id 7
-    label "AQS 21224312"
-    characterTraits []
-    name "AQS 21224312"
+    label "KCNep"
+    characterTraits "21224322"
+    name "KCNep"
   ]
   node [
     id 8
-    label "KGaina 2223222"
-    characterTraits []
-    name "KGaina 2223222"
+    label "AQS"
+    characterTraits "21224312"
+    name "AQS"
   ]
   node [
     id 9
-    label "DebR 22322222"
-    characterTraits []
-    name "DebR 22322222"
+    label "DGQ"
+    characterTraits "21225312"
+    name "DGQ"
   ]
   node [
     id 10
-    label "KNort 21251322"
-    characterTraits []
-    name "KNort 21251322"
+    label "CJKutt"
+    characterTraits "21255324"
+    name "CJKutt"
   ]
   node [
     id 11
-    label "Ca 21254323"
-    characterTraits []
-    name "Ca 21254323"
+    label "KCDGainV"
+    characterTraits "21224222"
+    name "KCDGainV"
   ]
   node [
     id 12
-    label "KCoxR 21224223"
-    characterTraits []
-    name "KCoxR 21224223"
+    label "KGaine"
+    characterTraits "22231222"
+    name "KGaine"
   ]
   node [
     id 13
-    label "Kh 11212122"
-    characterTraits []
-    name "Kh 11212122"
+    label "ColdD"
+    characterTraits "21234212"
+    name "ColdD"
   ]
   node [
     id 14
-    label "Ki 21231222"
-    characterTraits []
-    name "Ki 21231222"
+    label "KGaina"
+    characterTraits "21223222"
+    name "KGaina"
   ]
   node [
     id 15
-    label "Cb 31245323"
-    characterTraits []
-    name "Cb 31245323"
+    label "KCoxR"
+    characterTraits "21224223"
+    name "KCoxR"
   ]
   node [
     id 16
-    label "Bull 21222322"
-    characterTraits []
-    name "Bull 21222322"
+    label "KGainc"
+    characterTraits "21223322"
+    name "KGainc"
   ]
   node [
     id 17
-    label "Ka 21221222"
-    characterTraits []
-    name "Ka 21221222"
+    label "KCe"
+    characterTraits "21234324"
+    name "KCe"
   ]
   node [
     id 18
-    label "KCDGainV 21224222"
-    characterTraits []
-    name "KCDGainV 21224222"
+    label "Kb"
+    characterTraits "21222122"
+    name "Kb"
   ]
   node [
     id 19
-    label "KCa 21233223"
-    characterTraits []
-    name "KCa 21233223"
+    label "Ka"
+    characterTraits "21221222"
+    name "Ka"
   ]
   node [
     id 20
-    label "BCDQSuwa 21234312"
-    characterTraits []
-    name "BCDQSuwa 21234312"
+    label "Kh"
+    characterTraits "11212122"
+    name "Kh"
   ]
   node [
     id 21
-    label "Kruss 31232122"
-    characterTraits []
-    name "Kruss 31232122"
+    label "Kg"
+    characterTraits "22231223"
+    name "Kg"
   ]
   node [
     id 22
-    label "KDR 12212223"
-    characterTraits []
-    name "KDR 12212223"
+    label "KDR"
+    characterTraits "12212223"
+    name "KDR"
   ]
   node [
     id 23
-    label "BullKGainR 21222222"
-    characterTraits []
-    name "BullKGainR 21222222"
+    label "Ke"
+    characterTraits "21231323"
+    name "Ke"
   ]
   node [
     id 24
-    label "KGainc 2123322"
-    characterTraits []
-    name "KGainc 2123322"
+    label "KCb"
+    characterTraits "21231223"
+    name "KCb"
   ]
   node [
     id 25
-    label "KCrow 3231122"
-    characterTraits []
-    name "KCrow 3231122"
+    label "Kj"
+    characterTraits "22232323"
+    name "Kj"
   ]
   node [
     id 26
-    label "CJKutt 21255324"
-    characterTraits []
-    name "CJKutt 21255324"
+    label "Ki"
+    characterTraits "21231222"
+    name "Ki"
   ]
   node [
     id 27
-    label "KD 21232222"
-    characterTraits []
-    name "KD 21232222"
+    label "Bull"
+    characterTraits "21222322"
+    name "Bull"
   ]
   node [
     id 28
-    label "DebGaina 22323322"
-    characterTraits []
-    name "DebGaina 22323322"
+    label "CD"
+    characterTraits "21234323"
+    name "CD"
   ]
   node [
     id 29
-    label "CD 21234323"
-    characterTraits []
-    name "CD 21234323"
+    label "DDeb"
+    characterTraits "22222222"
+    name "DDeb"
   ]
   node [
     id 30
-    label "KGainb 21231322"
-    characterTraits []
-    name "KGainb 21231322"
+    label "BDQ"
+    characterTraits "21235212"
+    name "BDQ"
   ]
   node [
     id 31
-    label "ColdD 21234212"
-    characterTraits []
-    name "ColdD 21234212"
+    label "KD"
+    characterTraits "21232222"
+    name "KD"
   ]
   node [
     id 32
-    label "Kg 22231223"
-    characterTraits []
-    name "Kg 22231223"
+    label "Cb"
+    characterTraits "31245323"
+    name "Cb"
   ]
   node [
     id 33
-    label "KCb 21231223"
-    characterTraits []
-    name "KCb 21231223"
+    label "Ca"
+    characterTraits "21254323"
+    name "Ca"
   ]
   node [
     id 34
-    label "KGaine 22231222"
-    characterTraits []
-    name "KGaine 22231222"
+    label "KDoo"
+    characterTraits "21231122"
+    name "KDoo"
   ]
   node [
     id 35
-    label "Kj 22232323"
-    characterTraits []
-    name "Kj 22232323"
+    label "Kruss"
+    characterTraits "31232122"
+    name "Kruss"
   ]
   node [
     id 36
-    label "Kce 31244322"
-    characterTraits []
-    name "Kce 31244322"
+    label "KGainb"
+    characterTraits "21231322"
+    name "KGainb"
   ]
   node [
     id 37
-    label "DGQ 21225312"
-    characterTraits []
-    name "DGQ 21225312"
+    label "Kce"
+    characterTraits "31244322"
+    name "Kce"
   ]
   node [
     id 38
-    label "Ke 21231323"
-    characterTraits []
-    name "Ke 21231323"
+    label "KDeb"
+    characterTraits "22231323"
+    name "KDeb"
   ]
   node [
     id 39
-    label "Kb 2122122"
-    characterTraits []
-    name "Kb 2122122"
+    label "DebGaina"
+    characterTraits "22323322"
+    name "DebGaina"
   ]
   node [
     id 40
-    label "KDoo 21231122"
-    characterTraits []
-    name "KDoo 21231122"
+    label "DebGainb"
+    characterTraits "22322122"
+    name "DebGainb"
   ]
   edge [
     source 0
-    target 37
+    target 35
+    traits "'Outer Tang Angle:88-92->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 8
+  ]
+  edge [
+    source 0
+    target 34
+    traits "'Location of Maximum Blade Width:Thirdmost Proximal Quarter->Secondmost Proximal Quarter'"
+    differences 1
+    dimensions "'Location of Maximum Blade Width'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 1
-    target 31
+    target 3
+    traits "'Constriction Ratio:0.60-0.69->0.90-0.99'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
     inverseweight 0
-    weight 6
   ]
   edge [
     source 1
     target 10
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 1
-    target 12
-    inverseweight 0
-    weight 9
-  ]
-  edge [
-    source 1
-    target 22
-    inverseweight 0
+    traits "'Outer Tang Angle:93-115->51-65', 'Length/Width Ratio:2.00-2.99->4.00-4.99'"
+    differences 2
+    dimensions "'Outer Tang Angle', 'Length/Width Ratio'"
     weight 6
+    inverseweight 0
   ]
   edge [
     source 1
-    target 21
-    inverseweight 0
-    weight 6
-  ]
-  edge [
-    source 2
     target 36
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 2
-    target 7
-    inverseweight 0
-    weight 6
-  ]
-  edge [
-    source 2
-    target 19
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 3
-    target 4
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 3
-    target 40
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 4
-    target 9
-    inverseweight 0
-    weight 9
-  ]
-  edge [
-    source 4
-    target 27
-    inverseweight 0
-    weight 6
-  ]
-  edge [
-    source 4
-    target 16
-    inverseweight 0
+    traits "'Constriction Ratio:0.60-0.69->0.80-0.89'"
+    differences 1
+    dimensions "'Constriction Ratio'"
     weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 2
+    target 24
+    traits "'Outer Tang Angle:81-87->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 3
+    target 19
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 3
+    target 7
+    traits "'Outer Tang Angle:66-80->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 3
+    target 27
+    traits "'Outer Tang Angle:88-92->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 3
+    target 36
+    traits "'Constriction Ratio:0.80-0.89->0.90-0.99'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 3
+    target 16
+    traits "'Outer Tang Angle:81-87->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 4
+    target 29
+    traits "'Basal-Indentation:Deep->Shallow'"
+    differences 1
+    dimensions "'Basal-Indentation'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 4
+    target 39
+    traits "'Outer Tang Angle:81-87->88-92', 'Tang-Tip Shape:Blunt->Round'"
+    differences 2
+    dimensions "'Outer Tang Angle', 'Tang-Tip Shape'"
+    weight 6
+    inverseweight 0
+  ]
+  edge [
+    source 4
+    target 40
+    traits "'Tang-Tip Shape:Round->Pointed'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 5
-    target 23
+    target 13
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
     inverseweight 0
-    weight 12
   ]
   edge [
     source 5
-    target 6
+    target 8
+    traits "'Constriction Ratio:0.90-0.99->0.80-0.89'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
     inverseweight 0
-    weight 5
   ]
   edge [
     source 6
     target 18
+    traits "'Tang-Tip Shape:Round->Pointed'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
     inverseweight 0
-    weight 9
   ]
   edge [
     source 6
-    target 9
+    target 19
+    traits "'Outer Tang Angle:93-115->88-92'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 6
   ]
   edge [
     source 6
-    target 28
+    target 31
+    traits "'Constriction Ratio:0.80-0.89->0.90-0.99'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
     inverseweight 0
-    weight 14
+  ]
+  edge [
+    source 6
+    target 11
+    traits "'Outer Tang Angle:66-80->88-92'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 6
+    target 29
+    traits "'Base Shape:Arc/Round->Normal Curve'"
+    differences 1
+    dimensions "'Base Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 6
+    target 27
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 6
+    target 14
+    traits "'Outer Tang Angle:88-92->81-87'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 7
     target 37
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 8
-    target 34
-    inverseweight 0
-    weight 12
-  ]
-  edge [
-    source 8
-    target 16
-    inverseweight 0
+    traits "'Location of Maximum Blade Width:Thirdmost Proximal Quarter->Secondmost Proximal Quarter', 'Constriction Ratio:0.70-0.79->0.90-0.99'"
+    differences 2
+    dimensions "'Location of Maximum Blade Width', 'Constriction Ratio'"
     weight 6
+    inverseweight 0
+  ]
+  edge [
+    source 7
+    target 8
+    traits "'Fluting:Present->Absent'"
+    differences 1
+    dimensions "'Fluting'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 7
+    target 27
+    traits "'Outer Tang Angle:88-92->66-80'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 7
+    target 11
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 7
+    target 16
+    traits "'Outer Tang Angle:81-87->66-80'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 8
+    target 9
+    traits "'Outer Tang Angle:66-80->51-65'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 11
-    target 29
+    target 19
+    traits "'Outer Tang Angle:66-80->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 9
   ]
   edge [
     source 11
     target 15
-    inverseweight 0
+    traits "'Length/Width Ratio:3.00-3.99->2.00-2.99'"
+    differences 1
+    dimensions "'Length/Width Ratio'"
     weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 11
+    target 14
+    traits "'Outer Tang Angle:66-80->81-87'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 12
+    target 26
+    traits "'Base Shape:Normal Curve->Arc/Round'"
+    differences 1
+    dimensions "'Base Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 12
+    target 21
+    traits "'Length/Width Ratio:3.00-3.99->2.00-2.99'"
+    differences 1
+    dimensions "'Length/Width Ratio'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 13
-    target 27
-    inverseweight 0
+    target 30
+    traits "'Outer Tang Angle:66-80->51-65'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
     weight 7
-  ]
-  edge [
-    source 14
-    target 17
     inverseweight 0
-    weight 9
   ]
   edge [
     source 14
+    target 19
+    traits "'Outer Tang Angle:93-115->81-87'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 14
+    target 16
+    traits "'Tang-Tip Shape:Blunt->Round'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 16
     target 27
+    traits "'Outer Tang Angle:81-87->88-92'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 9
-  ]
-  edge [
-    source 14
-    target 32
-    inverseweight 0
-    weight 8
   ]
   edge [
     source 17
-    target 39
+    target 28
+    traits "'Length/Width Ratio:4.00-4.99->3.00-3.99'"
+    differences 1
+    dimensions "'Length/Width Ratio'"
+    weight 7
     inverseweight 0
-    weight 9
-  ]
-  edge [
-    source 17
-    target 22
-    inverseweight 0
-    weight 8
   ]
   edge [
     source 18
-    target 20
+    target 27
+    traits "'Tang-Tip Shape:Pointed->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
     inverseweight 0
-    weight 8
   ]
   edge [
     source 19
-    target 33
+    target 26
+    traits "'Constriction Ratio:0.90-0.99->0.80-0.89'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
     inverseweight 0
-    weight 10
+  ]
+  edge [
+    source 20
+    target 35
+    traits "'Location of Maximum Blade Width:Proximal Quarter->Thirdmost Proximal Quarter', 'Constriction Ratio:1.0->0.80-0.89'"
+    differences 2
+    dimensions "'Location of Maximum Blade Width', 'Constriction Ratio'"
+    weight 6
+    inverseweight 0
+  ]
+  edge [
+    source 21
+    target 38
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 21
+    target 24
+    traits "'Base Shape:Normal Curve->Arc/Round'"
+    differences 1
+    dimensions "'Base Shape'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 22
-    target 33
+    target 25
+    traits "'Location of Maximum Blade Width:Secondmost Proximal Quarter->Proximal Quarter', 'Constriction Ratio:0.80-0.89->1.0', 'Tang-Tip Shape:Blunt->Round'"
+    differences 3
+    dimensions "'Location of Maximum Blade Width', 'Constriction Ratio', 'Tang-Tip Shape'"
+    weight 5
     inverseweight 0
-    weight 6
+  ]
+  edge [
+    source 23
+    target 38
+    traits "'Base Shape:Normal Curve->Arc/Round'"
+    differences 1
+    dimensions "'Base Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 23
+    target 24
+    traits "'Tang-Tip Shape:Blunt->Round'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 23
+    target 36
+    traits "'Length/Width Ratio:3.00-3.99->2.00-2.99'"
+    differences 1
+    dimensions "'Length/Width Ratio'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 23
+    target 28
+    traits "'Outer Tang Angle:66-80->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 24
-    target 34
+    target 26
+    traits "'Length/Width Ratio:3.00-3.99->2.00-2.99'"
+    differences 1
+    dimensions "'Length/Width Ratio'"
+    weight 7
     inverseweight 0
-    weight 11
   ]
   edge [
     source 25
-    target 40
+    target 38
+    traits "'Outer Tang Angle:88-92->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 8
   ]
   edge [
     source 26
-    target 30
+    target 31
+    traits "'Outer Tang Angle:88-92->93-115'"
+    differences 1
+    dimensions "'Outer Tang Angle'"
+    weight 7
     inverseweight 0
-    weight 6
   ]
   edge [
-    source 29
-    target 38
-    inverseweight 0
-    weight 8
-  ]
-  edge [
-    source 30
+    source 26
     target 34
+    traits "'Tang-Tip Shape:Round->Pointed'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
     inverseweight 0
-    weight 12
+  ]
+  edge [
+    source 26
+    target 36
+    traits "'Tang-Tip Shape:Round->Blunt'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
+    inverseweight 0
+  ]
+  edge [
+    source 28
+    target 33
+    traits "'Constriction Ratio:0.80-0.89->0.60-0.69'"
+    differences 1
+    dimensions "'Constriction Ratio'"
+    weight 7
+    inverseweight 0
   ]
   edge [
     source 32
-    target 38
+    target 37
+    traits "'Outer Tang Angle:66-80->51-65', 'Length/Width Ratio:2.00-2.99->3.00-3.99'"
+    differences 2
+    dimensions "'Outer Tang Angle', 'Length/Width Ratio'"
+    weight 6
     inverseweight 0
-    weight 8
   ]
   edge [
-    source 32
-    target 35
+    source 34
+    target 36
+    traits "'Tang-Tip Shape:Blunt->Pointed'"
+    differences 1
+    dimensions "'Tang-Tip Shape'"
+    weight 7
     inverseweight 0
-    weight 8
   ]
 ]
